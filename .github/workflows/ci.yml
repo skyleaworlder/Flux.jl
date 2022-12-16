@@ -48,7 +48,14 @@ jobs:
             ${{ runner.os }}-test-
             ${{ runner.os }}-
       - uses: julia-actions/julia-buildpkg@v1
-      - uses: julia-actions/julia-runtest@v1
+      - name: "Run test with coverage report"
+        uses: julia-actions/julia-runtest@v1
+        if: matrix.version == '1' && matrix.os == 'ubuntu-latest'
+      - name: "Run test without coverage report"
+        uses: julia-actions/julia-runtest@v1
+        if: matrix.version != '1' || matrix.os != 'ubuntu-latest'
+        with:
+          coverage: false
 
   docs:
     name: Documentation
