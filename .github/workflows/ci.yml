@@ -24,18 +24,15 @@ jobs:
           - 'nightly'
         os: [ubuntu-latest]
         arch: [x64]
-        allow_failure: [false]
         include:
           - version: 'nightly'
             allow_failure: true
           - os: windows-latest
             version: '1'
             arch: x64
-            allow_failure: false
           - os: macOS-latest
             version: '1'
             arch: x64
-            allow_failure: false
     steps:
       - uses: actions/checkout@v3
       - uses: julia-actions/setup-julia@v1
